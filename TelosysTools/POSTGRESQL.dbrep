@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Telosys Database Repository --><root>
+<tableList databaseId="0" databaseName="POSTGRESQL" databaseProductName="PostgreSQL" generation="2015-04-14 18:40:03">
+<table catalog="" databaseType="TABLE" javaBean="Comment" name="comment" schema="public">
+<column dbComment="" dbDefaultValue="" dbName="id" dbNotNull="true" dbPosition="1" dbPrimaryKey="true" dbSize="10" dbTypeName="int4" inputType="number" javaName="id" javaType="java.lang.Integer" jdbcTypeCode="4" label="Id" notNull="true" selected="true"/>
+<column dbComment="" dbDefaultValue="" dbForeignKey="true" dbName="by" dbNotNull="false" dbPosition="2" dbSize="20" dbTypeName="varchar" inputType="text" javaName="by" javaType="java.lang.String" jdbcTypeCode="12" label="By" maxLength="20" notNull="false" selected="true"/>
+<column dbComment="" dbDefaultValue="" dbForeignKey="true" dbName="parent" dbNotNull="false" dbPosition="3" dbSize="10" dbTypeName="int4" inputType="number" javaName="parent" javaType="java.lang.Integer" jdbcTypeCode="4" label="Parent" notNull="false" selected="true"/>
+<column dbComment="" dbDefaultValue="" dbName="text" dbNotNull="false" dbPosition="4" dbSize="50" dbTypeName="varchar" inputType="text" javaName="text" javaType="java.lang.String" jdbcTypeCode="12" label="Text" maxLength="50" notNull="false" selected="true"/>
+<column dateType="D" dbComment="" dbDefaultValue="" dbName="time" dbNotNull="false" dbPosition="5" dbSize="13" dbTypeName="date" inputType="date" javaName="time" javaType="java.util.Date" jdbcTypeCode="91" label="Time" notNull="false" selected="true"/>
+<fk name="comment_by_fkey">
+<fkcol colname="by" colref="id" deferrable="7" deleterule="3" sequence="1" tablename="comment" tableref="usertable" updaterule="3"/>
+</fk>
+<fk name="comment_parent_fkey">
+<fkcol colname="parent" colref="id" deferrable="7" deleterule="3" sequence="1" tablename="comment" tableref="submission" updaterule="3"/>
+</fk>
+<link cardinality="ManyToOne" cascade="" fetch="DEFAULT" foreignKeyName="comment_by_fkey" id="LINK_FK_comment_by_fkey_O" inverseSideOf="" javaName="usertable" javaType="Usertable" joinTableName="" mappedBy="" optional="UNDEFINED" owningSide="true" sourceTableName="comment" targetEntity="Usertable" targetTableName="usertable" used="true">
+<joinColumns>
+<joinColumn insertable="false" name="by" nullable="true" referencedColumnName="id" unique="false" updatable="false"/>
+</joinColumns>
+</link>
+<link cardinality="ManyToOne" cascade="" fetch="DEFAULT" foreignKeyName="comment_parent_fkey" id="LINK_FK_comment_parent_fkey_O" inverseSideOf="" javaName="submission" javaType="Submission" joinTableName="" mappedBy="" optional="UNDEFINED" owningSide="true" sourceTableName="comment" targetEntity="Submission" targetTableName="submission" used="true">
+<joinColumns>
+<joinColumn insertable="false" name="parent" nullable="true" referencedColumnName="id" unique="false" updatable="false"/>
+</joinColumns>
+</link>
+</table>
+<table catalog="" databaseType="TABLE" javaBean="Submission" name="submission" schema="public">
+<column dbComment="" dbDefaultValue="" dbName="id" dbNotNull="true" dbPosition="1" dbPrimaryKey="true" dbSize="10" dbTypeName="int4" inputType="number" javaName="id" javaType="java.lang.Integer" jdbcTypeCode="4" label="Id" notNull="true" selected="true"/>
+<column dbComment="" dbDefaultValue="" dbForeignKey="true" dbName="by" dbNotNull="false" dbPosition="2" dbSize="20" dbTypeName="varchar" inputType="text" javaName="by" javaType="java.lang.String" jdbcTypeCode="12" label="By" maxLength="20" notNull="false" selected="true"/>
+<column dbComment="" dbDefaultValue="" dbName="descendants" dbNotNull="false" dbPosition="3" dbSize="10" dbTypeName="int4" inputType="number" javaName="descendants" javaType="java.lang.Integer" jdbcTypeCode="4" label="Descendants" notNull="false" selected="true"/>
+<column dbComment="" dbDefaultValue="" dbName="scores" dbNotNull="false" dbPosition="4" dbSize="10" dbTypeName="int4" inputType="number" javaName="scores" javaType="java.lang.Integer" jdbcTypeCode="4" label="Scores" notNull="false" selected="true"/>
+<column dateType="D" dbComment="" dbDefaultValue="" dbName="time" dbNotNull="false" dbPosition="5" dbSize="13" dbTypeName="date" inputType="date" javaName="time" javaType="java.util.Date" jdbcTypeCode="91" label="Time" notNull="false" selected="true"/>
+<column dbComment="" dbDefaultValue="" dbName="title" dbNotNull="false" dbPosition="6" dbSize="20" dbTypeName="varchar" inputType="text" javaName="title" javaType="java.lang.String" jdbcTypeCode="12" label="Title" maxLength="20" notNull="false" selected="true"/>
+<column dbComment="" dbDefaultValue="" dbName="type" dbNotNull="false" dbPosition="7" dbSize="20" dbTypeName="varchar" inputType="text" javaName="type" javaType="java.lang.String" jdbcTypeCode="12" label="Type" maxLength="20" notNull="false" selected="true"/>
+<column dbComment="" dbDefaultValue="" dbName="url" dbNotNull="false" dbPosition="8" dbSize="20" dbTypeName="varchar" inputType="text" javaName="url" javaType="java.lang.String" jdbcTypeCode="12" label="Url" maxLength="20" notNull="false" selected="true"/>
+<fk name="submission_by_fkey">
+<fkcol colname="by" colref="id" deferrable="7" deleterule="3" sequence="1" tablename="submission" tableref="usertable" updaterule="3"/>
+</fk>
+<link cardinality="OneToMany" cascade="" fetch="DEFAULT" foreignKeyName="comment_parent_fkey" id="LINK_FK_comment_parent_fkey_I" inverseSideOf="LINK_FK_comment_parent_fkey_O" javaName="listOfComment" javaType="java.util.List" joinTableName="" mappedBy="submission" optional="UNDEFINED" owningSide="false" sourceTableName="submission" targetEntity="Comment" targetTableName="comment" used="true"/>
+<link cardinality="ManyToOne" cascade="" fetch="DEFAULT" foreignKeyName="submission_by_fkey" id="LINK_FK_submission_by_fkey_O" inverseSideOf="" javaName="usertable" javaType="Usertable" joinTableName="" mappedBy="" optional="UNDEFINED" owningSide="true" sourceTableName="submission" targetEntity="Usertable" targetTableName="usertable" used="true">
+<joinColumns>
+<joinColumn insertable="false" name="by" nullable="true" referencedColumnName="id" unique="false" updatable="false"/>
+</joinColumns>
+</link>
+</table>
+<table catalog="" databaseType="TABLE" javaBean="Usertable" name="usertable" schema="public">
+<column dbComment="" dbDefaultValue="" dbName="id" dbNotNull="true" dbPosition="1" dbPrimaryKey="true" dbSize="20" dbTypeName="varchar" inputType="text" javaName="id" javaType="java.lang.String" jdbcTypeCode="12" label="Id" maxLength="20" notEmpty="true" notNull="true" selected="true"/>
+<column dbComment="" dbDefaultValue="" dbName="delay" dbNotNull="false" dbPosition="2" dbSize="10" dbTypeName="int4" inputType="number" javaName="delay" javaType="java.lang.Integer" jdbcTypeCode="4" label="Delay" notNull="false" selected="true"/>
+<column dbComment="" dbDefaultValue="" dbName="created" dbNotNull="false" dbPosition="3" dbSize="10" dbTypeName="int4" inputType="number" javaName="created" javaType="java.lang.Integer" jdbcTypeCode="4" label="Created" notNull="false" selected="true"/>
+<column dbComment="" dbDefaultValue="" dbName="karma" dbNotNull="false" dbPosition="4" dbSize="10" dbTypeName="int4" inputType="number" javaName="karma" javaType="java.lang.Integer" jdbcTypeCode="4" label="Karma" notNull="false" selected="true"/>
+<link cardinality="OneToMany" cascade="" fetch="DEFAULT" foreignKeyName="submission_by_fkey" id="LINK_FK_submission_by_fkey_I" inverseSideOf="LINK_FK_submission_by_fkey_O" javaName="listOfSubmission" javaType="java.util.List" joinTableName="" mappedBy="usertable" optional="UNDEFINED" owningSide="false" sourceTableName="usertable" targetEntity="Submission" targetTableName="submission" used="true"/>
+<link cardinality="OneToMany" cascade="" fetch="DEFAULT" foreignKeyName="comment_by_fkey" id="LINK_FK_comment_by_fkey_I" inverseSideOf="LINK_FK_comment_by_fkey_O" javaName="listOfComment" javaType="java.util.List" joinTableName="" mappedBy="usertable" optional="UNDEFINED" owningSide="false" sourceTableName="usertable" targetEntity="Comment" targetTableName="comment" used="true"/>
+</table>
+</tableList>
+</root>
