@@ -1,3 +1,0 @@
-Porras, Alejandra
-
-Castillo, Lluís
