@@ -1,0 +1,37 @@
+CREATE TABLE UserTable(
+	id varchar(20) PRIMARY KEY,
+	delay integer,
+	created integer,
+	karma integer
+);
+
+create TABLE Item(
+	id integer PRIMARY KEY,
+	deleted boolean,
+	type varchar(20),
+	by varchar(20) REFERENCES UserTable(id),
+	time date,
+	dead boolean
+);
+
+CREATE TABLE Comment(
+	id integer REFERENCES Item(id),
+	parent integer REFERENCES Item(id),
+	text varchar(500)
+);
+
+CREATE TABLE Story(
+	id integer REFERENCES Item(id),
+	descendants integer,
+	score integer,
+	title varchar(500),
+	url varchar(500)
+);
+
+CREATE TABLE Ask(
+	id integer REFERENCES Item(id),
+	descendants integer,
+	score integer,
+	title varchar(500),
+	text varchar(500)
+);
