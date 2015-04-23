@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<databases defaultId="0" maxId="4">
-<db dialect="org.hibernate.dialect.PostgreSQLDialect" driver="org.postgresql.Driver" id="0" isolationLevel="" name="POSTGRESQL" poolSize="1" typeName="POSTGRESQL" url="jdbc:postgresql://localhost:5432/ASWProject">
-<property name="user" value="postgres"/>
-<property name="password" value="Asterion"/>
-<metadata catalog="" schema="public" table-name-exclude="" table-name-include="" table-name-pattern="%" table-types="TABLE"/>
-</db>
-</databases>
