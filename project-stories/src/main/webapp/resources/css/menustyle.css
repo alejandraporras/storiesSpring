@@ -1,0 +1,91 @@
+#all {
+	width: 80%;
+	margin: 0 20% 0 0%;
+}
+
+#menu {
+	width: 83%;
+	left: 8%;
+	right: 8%;
+	height: 3.5%;
+	position: absolute;
+	background-color: #FF8000;
+}
+
+#space {
+	background-image:url('escheresque_ste.png');
+    background-repeat:repeat;
+	background-attachment:fixed;
+
+	width: 83%;
+	height: 88%;
+	position: absolute;
+	top: 5%;
+	left: 8%;
+}
+
+body {
+	background-image:url('escheresque.png');
+    background-repeat:repeat;
+	background-attachment:fixed;
+}
+
+#ulmenu {
+	position: relative;
+	top: -10px;
+	left: -49px;
+}
+
+#olsubmissions {
+	position: relative;
+	top: -5px;
+	left: -10px;
+}
+
+#limenu {
+	display: inline-block;
+	float: left;
+	margin-left: 1px;
+	font-family: Verdana;
+	font-size: 13;
+	color: black;
+	text-overflow: clip;
+	overflow: hidden;
+	padding-left: 10px;
+	margin-top: 0.1%;
+}
+
+#lidescription {
+	display: inline-block;
+	float: left;
+	font-family: Verdana;
+	font-size: 10;
+	color: gray;
+}
+
+#lidescription1 {
+	display: inline-block;
+	float: left;
+	font-family: Verdana;
+	font-size: 10;
+	color: gray;
+	text-overflow: clip;
+	overflow: hidden;
+	margin-left: -15px;
+	padding-left: 20px;
+	margin-top: 1%;
+}
+
+#lititle1{
+	display: inline;
+}
+
+a {
+	text-decoration: none;
+	color: black;
+}
+
+* {
+	font-family: Verdana;
+	font-size: 13;
+}
