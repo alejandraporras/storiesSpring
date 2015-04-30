@@ -5,14 +5,23 @@ package edu.upc.news.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import	org.springframework.stereotype.Controller;
 import	org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import	org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import edu.upc.news.model.Comment;
 import edu.upc.news.model.Item;
+import edu.upc.news.model.Story;
+import edu.upc.news.model.User;
 import edu.upc.news.service.ItemService;
 import edu.upc.news.service.UserService;
 
@@ -38,12 +47,32 @@ public class ItemsController {
 		
 	}
 	
-	@RequestMapping("/stories")
+	@RequestMapping(value = "/stories", method=RequestMethod.GET)
 	public String paginaPrincipal(Model model) {
 		
 		return listStories(model);
 		
 	}
+	@RequestMapping(value = "/stories", method=RequestMethod.POST)
+	public String paginaInicial(HttpServletRequest request, Model model) {
+        // Handle a new guest (if any):
+        String title = request.getParameter("title");
+        String url = request.getParameter("url");
+        String text = request.getParameter("textin");
+        User user = userService.findByName("Ale");
+        itemService.newStory(title, url, user);
+        System.out.println("  -- " + text );
+        /*
+        if (name != null)
+            guestDao.persist(new Guest(name));
+ 
+        // Prepare the result view (guest.jsp):
+         
+        return new ModelAndView("guest.jsp", "guestDao", guestDao);
+         */
+         return listStories(model);
+    }
+	
 	
 	@RequestMapping("/comments")
 	public String comments(@RequestParam("idStory") Integer story, Model model) {

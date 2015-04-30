@@ -47,15 +47,23 @@
 							<c:out value="${story.getDescendants()}" />
 						</a>
 					</tr>
-					<c:forEach var="node" items="${node.comments}">
-						<tr>
-							<td>
-							<c:out value="${node.text}" />
-						<c:set var="node" value="${node.comments}" scope="request" />
-							</td>
-						</tr>
-						
-					</c:forEach>
+			
+	
+				<c:forEach items="${commentsOfC}" var="comment">
+			<tr>
+
+				<td> 
+					
+					<c:out value="${comment.by.username}" />
+					<c:out value="${comment.time}" />
+					<br/>
+					<c:out value="${comment.text}" />
+					<br/>
+					<a href="/project-stories/reply.html?idComment=${comment.getId()} " > Reply</a>
+
+				</td>
+			</tr>
+		</c:forEach>
 				</tbody>
 
 

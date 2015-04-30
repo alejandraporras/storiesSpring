@@ -7,9 +7,14 @@ import org.springframework.stereotype.Service;
 
 
 
+
+
+
 import edu.upc.news.dao.ItemRepository;
+import edu.upc.news.dao.StoryRepository;
 import edu.upc.news.model.Comment;
 import edu.upc.news.model.Item;
+import edu.upc.news.model.Story;
 import edu.upc.news.model.User;
 
 import java.util.List;
@@ -19,6 +24,9 @@ public class ItemServiceImpl implements ItemService {
 	
 	@Autowired
 	private ItemRepository itemRepository;
+	
+	@Autowired
+	private StoryRepository storyRepository;
 	
 	public List<Item> getItemsByUser(User user) {
 		return itemRepository.findByBy(user);		
@@ -44,6 +52,12 @@ public class ItemServiceImpl implements ItemService {
 	public Item findItem(Long id) {
 		// TODO Auto-generated method stub
 		return itemRepository.findOne(id);
+	}
+
+	@Override
+	public void newStory(String title, String url, User user) {
+		Story story = new Story(user, url, title);
+		storyRepository.save(story);
 	}
 
 	

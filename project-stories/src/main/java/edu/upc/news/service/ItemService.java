@@ -22,7 +22,7 @@ public interface ItemService {
 	
 	public Item findItem(Long id);
 	
-	
+	public void newStory(String title, String url, User user);
 	
 	
 

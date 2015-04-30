@@ -30,7 +30,7 @@
 	</header>
 	</div>
 	<div id="space">
-		<form  name="myForm"  onsubmit="validate()" method="post">
+		<form name="submitForm" action="stories.html" method="POST">
         <table cellspacing="5" cellpadding="0" border="0" style="margin-top:5px">
         	<tr>
         		<td>title</td>
@@ -38,7 +38,7 @@
           	</tr>
           	<tr>
            		<td>url</td>
-            	<td><input type="url" name="url" style="width:420px" /></td>
+            	<td><input type="text" name="url" style="width:420px" /></td>
             </tr>
             <tr>
             	<td></td>
@@ -47,11 +47,11 @@
         	<tr>
             	<td>text</td>
             	<!--<td><input type="text" name="textin"/></td>-->
-            	<td><textarea rows="4" cols="50" name="textin" form="myForm"></textarea></td>
+            	<td><textarea id = "textin" rows="4" cols="50" name="textin" form="submitForm"></textarea></td>
           	</tr>
           	<tr>
             	<td></td>
-            	<td><input type="submit" value="submit" id="submit"/></td>
+            	<td><input type="submit" value="submit" /></td>
           	</tr>
           	<tr/>
           	<tr/>
