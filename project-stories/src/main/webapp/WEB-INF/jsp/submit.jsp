@@ -48,7 +48,6 @@
             </tr>
         	<tr>
             	<td>text</td>
-            	<!--<td><input type="text" name="textin"/></td>-->
             	<td><textarea id = "textin" rows="4" cols="50" name="textin" form="submitForm"></textarea></td>
           	</tr>
           	<tr>

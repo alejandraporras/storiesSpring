@@ -3,7 +3,7 @@
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <head>
-	<title> Main Page </title>
+	<title> Comentario de historias</title>
 
 	<meta charset="UTF-8">
 		<style type = "text/css">
@@ -46,10 +46,15 @@
 						<a href="/project-stories/comments.html?idStory=${story.getId()} ">
 							<c:out value="${story.getDescendants()}" />
 						</a>
-					</tr>
-			
-	
-				<c:forEach items="${commentsOfC}" var="comment">
+</tr>
+						<br />
+						<c:if test="${story.type=='ask'}"> 
+    				<c:out value="${story.text}" /> </c:if>
+    
+					
+
+
+					<c:forEach items="${commentsOfC}" var="comment">
 			<tr>
 
 				<td> 

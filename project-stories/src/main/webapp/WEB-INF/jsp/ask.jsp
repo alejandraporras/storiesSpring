@@ -36,7 +36,7 @@
 		<c:forEach items="${asks}" var="ask">
 			<tr>
 
-				<td> <c:out value="${ask.title}" />
+				<td> <a href="/project-stories/comments.html?idStory=${ask.getId()} " > <c:out value="${ask.title}" /></a>
 					
 					<br />
 					<c:out value="${ask.score}"  />  points
