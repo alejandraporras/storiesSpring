@@ -36,7 +36,7 @@
 		<c:forEach items="${stories}" var="story">
 			<tr>
 
-				<td> <a href=${item.url}> <c:out value="${story.title}" /></a>
+				<td> <a href=${story.url}> <c:out value="${story.title}" /></a>
 
 					
 					<br />

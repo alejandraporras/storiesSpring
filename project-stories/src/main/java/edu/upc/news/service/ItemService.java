@@ -24,6 +24,6 @@ public interface ItemService {
 	
 	public void newStory(String title, String url, User user);
 	
-	
+	public void newAsk(String title,  User user, String url, String text);
 
 }

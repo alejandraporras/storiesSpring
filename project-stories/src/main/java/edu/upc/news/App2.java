@@ -40,7 +40,7 @@ public class App2 {
 		userRepo.save(user);
 		
 		
-		Story story = new Story(user,"Este es el titulo - Primera Historia", "www.google.com");
+		Story story = new Story(user,"Este es el titulo - Primera Historia", "http://www.google.com");
 
 		
 		storyRepo.save(story);
@@ -65,12 +65,12 @@ public class App2 {
 	
 		// Creamos 5 historias mas
 		for (int i=1; i <=5; ++i) {
-			story = new Story(user,"Texto de la Story "+i, "www.google.com");
+			story = new Story(user,"titulo de la Story "+i, "http://www.google.com");
 			storyRepo.save(story);
 		}
 		// Creamos 3 aks mas
 		for (int i=1; i <=3; ++i) {
-			story = new Story(user,"Preguntaa "+i);
+			story = new Story(user,"Preguntaa "+i, "", "textoASK");
 			storyRepo.save(story);
 			Comment com = new Comment(user,"Comentario a la pregunta!",story);
 			commentRepo.save(com);

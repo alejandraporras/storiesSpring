@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 
 
+
 import edu.upc.news.dao.ItemRepository;
 import edu.upc.news.dao.StoryRepository;
 import edu.upc.news.model.Comment;
@@ -57,6 +58,12 @@ public class ItemServiceImpl implements ItemService {
 	@Override
 	public void newStory(String title, String url, User user) {
 		Story story = new Story(user, url, title);
+		storyRepository.save(story);
+	}
+
+	@Override
+	public void newAsk(String title, User user, String url, String text) {
+		Story story = new Story(user, title, "", text);
 		storyRepository.save(story);
 	}
 

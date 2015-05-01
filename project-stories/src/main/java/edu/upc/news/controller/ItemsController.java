@@ -51,22 +51,25 @@ public class ItemsController {
 	@RequestMapping(value = "/stories", method=RequestMethod.POST)
 	public String paginaInicial(HttpServletRequest request, Model model) {
         // Handle a new guest (if any):
+		User user = userService.findByName("Ale");
         String title = request.getParameter("title");
         String url = request.getParameter("url");
-        
         String text = request.getParameter("textin");
         
-        User user = userService.findByName("Ale");
-        itemService.newStory(title, url, user);
-        System.out.println("  -- " + text );
-        /*
-        if (name != null)
-            guestDao.persist(new Guest(name));
- 
-        // Prepare the result view (guest.jsp):
-         
-        return new ModelAndView("guest.jsp", "guestDao", guestDao);
-         */
+
+        System.out.println("USER: " + user + " title: " + title + " url " + url + " text: " + text );
+        
+        if (url.isEmpty()) {
+        	//ES UN ASK
+        	itemService.newAsk(title, user, "", text);
+        }
+        else{
+        	//STORY
+        	 itemService.newStory(title, url, user);
+   
+        }
+       
+    
          return listStories(model);
     }
 	

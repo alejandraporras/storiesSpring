@@ -20,15 +20,18 @@ public class Story extends Item {
 	}
 	
 	// Ask
-	public Story(User user,String title) {
+	public Story(User user,String title, String url, String text) {
 		super(user,"ask");  // inicializa los datos minimos del padre (item)
 		this.title = title;
 		this.score=0;
+		super.setText(text);
 
 	}
 	
 	// Story
 	public Story(User user,String title, String url) {
+		
+		
 		super(user,"story");  
 		this.title = title;
 		this.url = url;

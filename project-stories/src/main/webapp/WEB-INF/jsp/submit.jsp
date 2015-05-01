@@ -30,7 +30,9 @@
 	</header>
 	</div>
 	<div id="space">
-		<form name="submitForm" action="stories.html" method="POST">
+		
+	
+		<form name="submitForm" action="stories.html" method="POST" id="submitForm">
         <table cellspacing="5" cellpadding="0" border="0" style="margin-top:5px">
         	<tr>
         		<td>title</td>
@@ -61,6 +63,7 @@
           	</tr>
         </table>
     	</form>
+	
 	</div>
 	</div>
 </body>
