@@ -17,9 +17,9 @@ public class User {
 	@Id
 	private String username;  // La clave deberia ser el nombre del usuario. No puede ser autogenerado sino capturado por la aplicacion
 	
-	private Integer delay;
+	private int delay;
 	private Date created;
-	private Integer karma;
+	private int karma;
 	private String password;
 	
 	// Un User tiene varios items (historias, comments, etc)
@@ -48,10 +48,10 @@ public class User {
 	public void setUsername(String username) {
 		this.username = username;
 	}
-	public Integer getDelay() {
+	public int getDelay() {
 		return delay;
 	}
-	public void setDelay(Integer delay) {
+	public void setDelay(int delay) {
 		this.delay = delay;
 	}
 	public Date getCreated() {
@@ -60,10 +60,10 @@ public class User {
 	public void setCreated(Date created) {
 		this.created = created;
 	}
-	public Integer getKarma() {
+	public int getKarma() {
 		return karma;
 	}
-	public void setKarma(Integer karma) {
+	public void setKarma(int karma) {
 		this.karma = karma;
 	}
 	

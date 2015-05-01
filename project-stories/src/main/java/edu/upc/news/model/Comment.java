@@ -11,35 +11,26 @@ public class Comment extends Item {
 	
 	@ManyToOne
 	private Item parent;
-	private String text;
 	
 	public Comment() {
 		
 	}
 	
-	public Comment(User user, String text ) {
+	public Comment(User user, String text, Item parentItem ) {
 		// Inicializamos los datos de Item
 		super(user,"comment");
-		this.setText(text);
+		super.setText(text);
+		parent = parentItem;
+		parent.incrementDescendants();
+	
 	}
 	
 	public Item getParent() {
 		return parent;
 	}
-	public Long getId() {
-		return super.getId();
-	}
+
 	public void setParent(Item parent) {
-		parent.incrementDescendants();
 		this.parent = parent;
-	}
-
-	public String getText() {
-		return text;
-	}
-
-	public void setText(String text) {
-		this.text = text;
 	}
 
 }

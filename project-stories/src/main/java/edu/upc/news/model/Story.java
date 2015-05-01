@@ -9,8 +9,7 @@ public class Story extends Item {
 	
 	// Con este solo objeto podemos representar Story y Ask
 	
-
-	private Integer score;
+	private int score;
 	
 	private String title;
 	
@@ -20,35 +19,32 @@ public class Story extends Item {
 		
 	}
 	
-	// Creadora de un ask
-	
+	// Ask
 	public Story(User user,String title) {
 		super(user,"ask");  // inicializa los datos minimos del padre (item)
 		this.title = title;
-
-		score = 0;
+		this.score=0;
 
 	}
-	// Creadora de un story
+	
+	// Story
 	public Story(User user,String title, String url) {
-		super(user,"story");  // inicializa los datos minimos del padre (item)
+		super(user,"story");  
 		this.title = title;
-
-		score = 0;
-		this.url = "http://"+url;
+		this.url = url;
+		this.score=0;
 	}
 
-	public Integer getScore() {
+	
+
+	public int getScore() {
 		return score;
 	}
 
-	public void setScore(Integer score) {
+	public void setScore(int score) {
 		this.score = score;
 	}
-	
-	public Long getId() {
-		return super.getId();
-	}
+
 	public String getTitle() {
 		return title;
 	}
@@ -62,7 +58,7 @@ public class Story extends Item {
 	}
 
 	public void setUrl(String url) {
-		this.url = "http://"+url;
+		this.url = url;
 	}
 		
 

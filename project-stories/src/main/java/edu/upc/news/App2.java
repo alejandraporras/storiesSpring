@@ -47,8 +47,8 @@ public class App2 {
 		// Creamos varios coments a esta historia
 		
 		for (int i=1; i <=10; ++i) {
-			Comment comment = new Comment(user,"Comentarioooooooooo");
-			comment.setParent(story); // esta es la clave: el comentario correponde a la historia de Alejita
+			Comment comment = new Comment(user,"Comentarioooooooooo",story);
+			//comment.setParent(story); // esta es la clave: el comentario correponde a la historia de Alejita
 			commentRepo.save(comment);
 		}
 		
@@ -57,11 +57,9 @@ public class App2 {
 		storyRepo.save(story);
 		// Creamos un reply del comentario anterior
 		
-		Comment aux = new Comment(user,"Comentario base!");
-		aux.setParent(story); 
+		Comment aux = new Comment(user,"Comentario base!",story);
 		commentRepo.save(aux);
-		Comment reply = new Comment(user,"Replica a comentario base");
-		reply.setParent(aux); // el padre de este comentario es otro comentario
+		Comment reply = new Comment(user,"Replica a comentario base",aux);
 		commentRepo.save(reply);
 		
 	
@@ -74,8 +72,7 @@ public class App2 {
 		for (int i=1; i <=3; ++i) {
 			story = new Story(user,"Preguntaa "+i);
 			storyRepo.save(story);
-			Comment com = new Comment(user,"Comentario a la pregunta!");
-			com.setParent(story); 
+			Comment com = new Comment(user,"Comentario a la pregunta!",story);
 			commentRepo.save(com);
 			storyRepo.save(story);
 		}

@@ -33,14 +33,11 @@ public class Item {  // Esta clase podria definirse como abstracta. Depende de t
 	@OneToMany(fetch = FetchType.EAGER,mappedBy="parent")
 	private List<Comment> comments ;
 	
-	private Integer descendants;
-	
-	public Integer getDescendants(){
-		return descendants;
-	}
-	
 	private Date time;
 	private boolean dead;
+	private String text;
+	
+	private int descendants;
 	
 	// Algunos constructores
 	public Item() {
@@ -52,9 +49,6 @@ public class Item {  // Esta clase podria definirse como abstracta. Depende de t
 		this.type = type;
 		this.time = new Date();
 		descendants = 0;
-	}
-	public void incrementDescendants(){
-		descendants += 1;
 	}
 	
 	public Long getId() {
@@ -97,7 +91,12 @@ public class Item {  // Esta clase podria definirse como abstracta. Depende de t
 		this.dead = dead;
 	}
 	
-
+	public String getText() {
+		return text;
+	}
+	public void setText(String text) {
+		this.text = text;
+	}
 	
 
 	public List<Comment> getComments() {
@@ -108,8 +107,17 @@ public class Item {  // Esta clase podria definirse como abstracta. Depende de t
 		this.comments = comments;
 	}
 
-	public void setDescendants(Integer descendants) {
+	public int getDescendants() {
+		return descendants;
+	}
+
+	public void setDescendants(int descendants) {
 		this.descendants = descendants;
+	}
+	
+	
+	public void incrementDescendants(){
+		descendants += 1;
 	}
 
 	@Override
@@ -117,7 +125,6 @@ public class Item {  // Esta clase podria definirse como abstracta. Depende de t
 		return "Item [id=" + id + ", deleted=" + deleted + ", type=" + type
 				+ ", by=" + by + ", time=" + time + ", dead=" + dead + ", User=" + by.getUsername() + "]";
 	}
-
 	
 	
 }
