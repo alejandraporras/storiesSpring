@@ -1,9 +1,5 @@
-# storiesSpring
+ASW13 Web application with Spring Framework
 
-TODO:
 
--Perfiles de usuario 
--Social sign
--Reply
--Mostrar los comentarios recursivamente
--Votar
+Lluís Castillo
+Alejandra Porras
