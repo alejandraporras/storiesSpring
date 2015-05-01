@@ -30,45 +30,66 @@
 					</ul>
 				</nav>
 			</header>
-		</div>
-		<div id="space">
+			<p>
+			<ol type="1">
+				<header>
+					<div id="comentari">
+						<p>
+					
+							<font face="verdana" color="#000000" size="2"> <c:out
+									value="${story.title}" /> <c:out value="${story.url}" /></font> <sup><font
+								face="verdana" color="#828282" size="1"> <br /> <c:out
+										value="${story.score}" /> points by <c:out
+										value="${story.by.username}" /> <c:out value="${story.time}" />
+									| comments <a
+									href="/project-stories/comments.html?idStory=${story.getId()} ">
+										<c:out value="${story.getDescendants()}" />
+								</a>
+
+							</font></sup>
+
+							</tr>
+							<br />
+							<c:if test="${story.type=='ask'}">
+								<c:out value="${story.text}" />
+							</c:if>
+
+						</p>
+
+					</div>
+				</header>
+			</ol>
+			</p>
+		<form name="commentForm" action="comments.html?idStory=${story.getId()}" method="POST" id="commentForm">
+        <table cellspacing="5" cellpadding="0" border="0" style="margin-top:5px">
+        	<tr>
+        		
+            	<td><textarea id = "textin" rows="4" cols="50" name="textin" form="commentForm"></textarea></td>
+          	</tr>
+          	
+            	<td><input type="submit" value="Add a comment" /></td>
+          	</tr>
+          	
+        </table>
+    	</form>
 			<table class="table table-bordered table-hover table-striped">
 
 				<tbody>
 					<tr>
-						<c:out value="${story.title}" />
-						<c:out value="${story.url}" />
-						<c:out value="${story.score}" />
-						by
-						<c:out value="${story.by.username}" />
-						<c:out value="${story.time}" />
-						| comments
-						<a href="/project-stories/comments.html?idStory=${story.getId()} ">
-							<c:out value="${story.getDescendants()}" />
-						</a>
-</tr>
-						<br />
-						<c:if test="${story.type=='ask'}"> 
-    				<c:out value="${story.text}" /> </c:if>
-    
-					
 
 
-					<c:forEach items="${commentsOfC}" var="comment">
-			<tr>
 
-				<td> 
-					
-					<c:out value="${comment.by.username}" />
-					<c:out value="${comment.time}" />
-					<br/>
-					<c:out value="${comment.text}" />
-					<br/>
-					<a href="/project-stories/reply.html?idComment=${comment.getId()} " > Reply</a>
 
-				</td>
-			</tr>
-		</c:forEach>
+						<c:forEach items="${commentsOfC}" var="comment">
+							<tr>
+
+								<td><c:out value="${comment.by.username}" /> <c:out
+										value="${comment.time}" /> <br /> <c:out
+										value="${comment.text}" /> <br /> <a
+									href="/project-stories/reply.html?idComment=${comment.getId()} ">
+										Reply</a></td>
+							</tr>
+						</c:forEach>
 				</tbody>
 
 
@@ -77,5 +98,9 @@
 
 			</table>
 		</div>
+
+
+
+
 	</div>
 </body>

@@ -31,7 +31,7 @@ public class ItemsController {
 	@Autowired
 	private UserService userService;
 		
-
+	private Integer idStoryGlobal;
 	@RequestMapping("/")
 	public String listStories(Model model) {
 		
@@ -56,9 +56,6 @@ public class ItemsController {
         String url = request.getParameter("url");
         String text = request.getParameter("textin");
         
-
-        System.out.println("USER: " + user + " title: " + title + " url " + url + " text: " + text );
-        
         if (url.isEmpty()) {
         	//ES UN ASK
         	itemService.newAsk(title, user, "", text);
@@ -76,13 +73,14 @@ public class ItemsController {
 	
 	@RequestMapping("/comments")
 	public String comments(@RequestParam("idStory") Integer story, Model model) {
-		
+		idStoryGlobal = story;
+		System.out.println("HISTORIA: " + idStoryGlobal);
 		model.addAttribute("idStory", story);
 		
 
 		Item item = itemService.findItem(story.longValue());
 		
-		model.addAttribute("node", item);
+		model.addAttribute("storyGlobal", item);
 		
 		List<Comment> comments = item.getComments();
 		model.addAttribute("commentsOfC", comments);
@@ -90,6 +88,23 @@ public class ItemsController {
 		return	"comments";		
 		
 	}
+	
+	@RequestMapping(value = "/comments", method=RequestMethod.POST)
+	public void allComments(@RequestParam("idStory") Integer story, HttpServletRequest request,Model model) {
+		
+		model.addAttribute("idStory", story);
+		
+		Item parentItem = itemService.findItem(story.longValue());
+		
+		User user = userService.findByName("Ale");
+
+        String text = request.getParameter("textin");
+        itemService.newComment(user, text, parentItem);
+        comments(story,model);
+	
+	}
+	
+	
 	
 	@RequestMapping("/ask")
 	public String allAsk(Model model) {
@@ -103,16 +118,39 @@ public class ItemsController {
 	
 	@RequestMapping("/submit")
 	public String submit(){
-		//TODO 
 		return "submit";
 	}
 
 	@RequestMapping("/reply")
-	public String replyComment(@RequestParam("idComment") Integer comment, Model model) {
+	public String showReplyComment(@RequestParam("idComment") Integer comment, Model model) {
 		
-	
+		System.out.println("ID COMENT: " + comment);
+		Comment c = (Comment) itemService.findItem(comment.longValue());
+		model.addAttribute("comment", c);
 		return	"reply";		
 		
+	}
+	
+	@RequestMapping(value = "/reply", method=RequestMethod.POST)
+	public String reply(@RequestParam("idComment") Integer comment, HttpServletRequest request,Model model) {
+		
+		Item parentItem = itemService.findItem(comment.longValue());
+		
+		User user = userService.findByName("Ale");
+
+        String text = request.getParameter("textin");
+        itemService.newComment(user, text, parentItem);
+        System.out.println("-----------" );
+       
+        
+        //TODO MEJORAR ESTO
+        model.addAttribute("idStory", idStoryGlobal);
+		Item item = itemService.findItem(idStoryGlobal.longValue());
+		List<Comment> comments = item.getComments();
+		model.addAttribute("commentsOfC", comments);
+		model.addAttribute("story", item);
+		return	"comments";		
+	
 	}
 
 }

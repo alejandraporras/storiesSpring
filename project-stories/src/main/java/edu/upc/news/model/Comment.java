@@ -21,7 +21,7 @@ public class Comment extends Item {
 		super(user,"comment");
 		super.setText(text);
 		parent = parentItem;
-		parent.incrementDescendants();
+		
 	
 	}
 	
