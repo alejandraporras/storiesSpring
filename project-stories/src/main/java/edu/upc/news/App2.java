@@ -13,8 +13,6 @@ import edu.upc.news.model.Story;
 import edu.upc.news.model.User;
 
 
-
-
 /**
  * Standalone application with Spring Data JPA, Hibernate and Maven
  *
