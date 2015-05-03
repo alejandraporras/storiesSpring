@@ -1,11 +1,9 @@
 package edu.upc.news.controller;
 
-
-
-
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,7 +17,6 @@ import edu.upc.news.model.Item;
 import edu.upc.news.model.User;
 import edu.upc.news.service.ItemService;
 import edu.upc.news.service.UserService;
-
 
 
 @Controller
@@ -36,7 +33,7 @@ public class ItemsController {
 	public String listStories(Model model) {
 		
 		
-		model.addAttribute("stories",itemService.getAllStories());
+		model.addAttribute("items",itemService.getAllStories());
 	
 		return "stories";	
 		
@@ -48,21 +45,40 @@ public class ItemsController {
 		return listStories(model);
 		
 	}
+	
+	@RequestMapping(value = "/like", method=RequestMethod.POST)
+	public String puntuar(Model model, @RequestParam("idStory") Integer story) {
+			
+		
+			System.out.println("LIKE- " + story);
+			String type = itemService.rateStory(story.longValue());
+			if (type.equals("story"))return listStories(model);
+			else {
+
+				model.addAttribute("asks",itemService.getAllAsk());
+					return "ask";
+			}
+				
+			
+		}
 	@RequestMapping(value = "/stories", method=RequestMethod.POST)
-	public String paginaInicial(HttpServletRequest request, Model model) {
+	public String paginaInicial(HttpServletRequest request, Model model, HttpSession session) {
         // Handle a new guest (if any):
 		User user = userService.findByName("Ale");
+		
+
+	
         String title = request.getParameter("title");
         String url = request.getParameter("url");
         String text = request.getParameter("textin");
         
         if (url.isEmpty()) {
         	//ES UN ASK
-        	itemService.newAsk(title, user, "", text);
+        	itemService.saveAsk(title, user, "", text);
         }
         else{
         	//STORY
-        	 itemService.newStory(title, url, user);
+        	 itemService.saveStory(title, url, user);
    
         }
        
@@ -103,12 +119,10 @@ public class ItemsController {
         comments(story,model);
 	
 	}
-	
-	
+		
 	
 	@RequestMapping("/ask")
 	public String allAsk(Model model) {
-
 
 		model.addAttribute("asks",itemService.getAllAsk());
 		return "ask";
