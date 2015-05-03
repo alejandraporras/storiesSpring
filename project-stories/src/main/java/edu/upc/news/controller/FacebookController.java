@@ -4,10 +4,10 @@ import java.util.UUID;
 
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.social.connect.Connection;
-import org.springframework.social.connect.ConnectionKey;
-import org.springframework.social.connect.UserProfile;
 import org.springframework.social.facebook.api.Facebook;
+import org.springframework.social.facebook.api.FacebookProfile;
 import org.springframework.social.facebook.connect.FacebookConnectionFactory;
 import org.springframework.social.oauth2.AccessGrant;
 import org.springframework.social.oauth2.GrantType;
@@ -18,6 +18,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.view.RedirectView;
 
+import edu.upc.news.model.User;
+import edu.upc.news.service.UserService;
+
 @Controller
 public class FacebookController {
 	
@@ -27,10 +30,16 @@ public class FacebookController {
 	private static final String APP_FACEBOOK_SECRET = "203fbbaaab9979cddb3312ef3aadd832";
 	private static final String APP_HOST = "http://localhost:8080/project-stories";
 	
+	// Los datos adicionales que quiero recuperar, aparte de los que vienen x default
+	public static final String SCOPE = "email,user_about_me";
+	
 	private final FacebookConnectionFactory facebookConnectionFactory;
 	
 	private String currentUser;
 	
+	
+	@Autowired
+	private UserService userService;
 	
 	
 	// Constructor: se crea el connection factory de Facebook
@@ -39,7 +48,6 @@ public class FacebookController {
 		facebookConnectionFactory = new FacebookConnectionFactory(APP_FACEBOOK_ID,APP_FACEBOOK_SECRET);
 	}
 	
-
 	
 	// El metodo que trata la opcion 'Facebook'
 	// Prepara la conexion a Facebook y luego redirige el flujo a esa pagina
@@ -59,6 +67,7 @@ public class FacebookController {
 		OAuth2Operations oauthOperations = facebookConnectionFactory.getOAuthOperations();
 		
 		OAuth2Parameters params = new OAuth2Parameters();
+		params.setScope(SCOPE);
 		params.setRedirectUri(APP_HOST + "/callback");
 		params.setState(state);
 		 
@@ -85,17 +94,21 @@ public class FacebookController {
 		
 		// Recuperamos los datos del user Facebook
 		Connection<Facebook> connection =  facebookConnectionFactory.createConnection(accessGrant);
-		ConnectionKey connectionKey = connection.getKey();
 		
-		currentUser = connectionKey.getProviderUserId();  // Un ID unico del user Facebook
-	 
-		UserProfile userProfile = connection.fetchUserProfile();
+		currentUser = connection.getKey().getProviderUserId();  // Un ID unico del user Facebook
 		
-		String userName = userProfile.getName();
+		FacebookProfile facebookProfile = connection.getApi().userOperations().getUserProfile();
 		
-		session.setAttribute("userName", userName);
+		String fullName = facebookProfile.getName();
+		
+		session.setAttribute("userName", fullName);
+		
+		// Persiste user
+		User user = new User(currentUser,"x");
+		user.setSocialName(fullName);
+		userService.saveUser(user);
 
-		System.out.println("facebookUserId:"+currentUser + " userName:"+userName);
+		System.out.println("facebookUserId:"+currentUser + " userName:"+fullName);
 		return new RedirectView("stories");
 	}
 	
