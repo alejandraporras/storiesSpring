@@ -27,7 +27,7 @@
             <value>postgres</value>
         </property>
         <property name="password">
-            <value>Asterion</value>
+            <value>felipe</value>
         </property>
     </bean>
  
@@ -41,7 +41,7 @@
         <property name="jpaProperties">
             <props>
                 <prop key="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</prop>
-                <prop key="hibernate.show_sql">true</prop>
+                <prop key="hibernate.show_sql">false</prop>
                 <prop key="hibernate.format_sql">false</prop>
               <!-- <prop key="hibernate.hbm2ddl.auto">create</prop> -->    
             </props>
@@ -51,6 +51,8 @@
 	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
 		<property name="entityManagerFactory" ref="entityManagerFactory" />
 	</bean>
-
+	
+	<!-- Configuracion para Social Sign in -->
+	
 
 </beans>

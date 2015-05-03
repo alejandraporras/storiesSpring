@@ -1,8 +1,5 @@
 package edu.upc.news.controller;
 
-
-
-
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -19,7 +16,6 @@ import edu.upc.news.model.Item;
 import edu.upc.news.model.User;
 import edu.upc.news.service.ItemService;
 import edu.upc.news.service.UserService;
-
 
 
 @Controller
@@ -103,8 +99,7 @@ public class ItemsController {
         comments(story,model);
 	
 	}
-	
-	
+		
 	
 	@RequestMapping("/ask")
 	public String allAsk(Model model) {
