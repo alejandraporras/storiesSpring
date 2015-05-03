@@ -37,6 +37,7 @@ public class App2 {
 		
 		// Creamos un user
 		User user = new User("Ale", "pass");
+		user.setSocialName("Ale");
 		userRepo.save(user);
 		
 		

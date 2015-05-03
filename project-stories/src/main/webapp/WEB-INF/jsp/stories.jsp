@@ -12,47 +12,60 @@
 	
 	</style>
 </head>
+
 <body>
 	<div id="all">
 		<div id="menu">
 			<header>
 				<nav>
 					<ul id="ulmenu">
-						<li id="limenu"> <img src="resources/images/upc2.png" alt="upclogo" class="icon" id="upc"> </li>
-						<li id="limenu"> <a href="stories.html"><b>ASW News</b></a> </li>
+						<li id="limenu"><img src="resources/images/upc2.png"
+							alt="upclogo" class="icon" id="upc"></li>
+						<li id="limenu"><a href="stories.html"><b>ASW News</b></a></li>
 						<li id="limenu">|</li>
-						<li id="limenu"> <a href="ask.html">ask</a></li>
+						<li id="limenu"><a href="ask.html">ask</a></li>
 						<li id="limenu">|</li>
-						<li id="limenu"> <a href="submit.html">submit</a></li>
-						<li id="limenu" style="float:right"> <a href="login.html" style="float:right">login</a></li>
+						<li id="limenu"><a href="submit.html">submit</a></li>
+					
+						<li id="limenu" style="float: right"><a href="login.html"
+							style="float: right">login</a></li>
 					</ul>
 				</nav>
 			</header>
 		</div>
+
 		<div id="space">
 			<table class="table table-bordered table-hover table-striped">
 
-	<tbody>
-		<c:forEach items="${stories}" var="story">
-			<tr>
+				<tbody>
+					<c:set var="count" value="0" scope="page" />
+					<c:forEach items="${items}" var="story">
+						<c:set var="count" value="${count + 1}" scope="page" />
 
-				<td> <a href=${story.url}> <c:out value="${story.title}" /></a>
+						<tr>
+						<td colspan="4">
+						<form action="like.html?idStory=${story.getId()}" method="POST" id=like>
+								<c:out value="${count}" />. 
+							<input type="image" src="resources/images/like.png">
+						<a href=${story.url}><c:out value="${story.title}" /></a></form> </td></tr>
 
-					
-					<br />
-					<c:out value="${story.score}"  />  points
-					by
-					<c:out value="${story.by.username}" />
-					| comments 
-					<a href="/project-stories/comments.html?idStory=${story.getId()} " > <c:out value="${story.getDescendants()}" /></a>
 
-					<c:out value="${story.time}" />
+						<tr>
 
-				</td>
-			</tr>
-		</c:forEach>
-	</tbody>
-</table>
+
+							<td id="trdescription"><c:out value="${story.score}" />
+								points by <c:out value="${story.by.username}" /> <c:out
+									value="${story.time}" /> | comments <a
+								href="/project-stories/comments.html?idStory=${story.getId()} ">
+									<c:out value="${story.getDescendants()}" />
+							</a></td>
+
+
+
+
+						</tr>
+					</c:forEach>
+				</tbody>
+			</table>
 		</div>
-	</div>
 </body>

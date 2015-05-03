@@ -32,14 +32,14 @@ body {
 
 #ulmenu {
 	position: relative;
-	top: -10px;
-	left: -49px;
+	margin-top: -0.9%;
+	margin-left: -4%;
 }
 
 #olsubmissions {
 	position: relative;
-	top: -5px;
-	left: -10px;
+	margin-top: 0.5%;
+	margin-left: -1.3%;
 }
 
 #limenu {
@@ -55,15 +55,27 @@ body {
 	margin-top: 0.1%;
 }
 
-#lidescription {
-	display: inline-block;
-	float: left;
+#trdescription {
 	font-family: Verdana;
 	font-size: 10;
 	color: gray;
 }
 
-#lidescription1 {
+#adescription {
+	font-family: Verdana;
+	font-size: 10;
+	color: gray;
+}
+
+#auser {
+	text-decoration: underline;
+}
+
+#adescription:hover {
+	text-decoration: underline;
+}
+
+#lidescription {
 	display: inline-block;
 	float: left;
 	font-family: Verdana;
@@ -71,9 +83,9 @@ body {
 	color: gray;
 	text-overflow: clip;
 	overflow: hidden;
-	margin-left: -15px;
-	padding-left: 20px;
-	margin-top: 1%;
+	margin-left: -1.5%;
+	padding-left: 1.5%;
+	margin-top: 0.4%;
 }
 
 #lititle1{

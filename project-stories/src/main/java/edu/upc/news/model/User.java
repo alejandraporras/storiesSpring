@@ -22,6 +22,8 @@ public class User {
 	private int karma;
 	private String password;
 	
+	private String socialName;
+	
 	// Un User tiene varios items (historias, comments, etc)
 	// el mappedBy tiene que indicar el atributo en el objeto 'Item' que hace referencia a 'User'
 	// CascadeType.REMOVE : si elimino un User, se eliminan TODOS sus items
@@ -83,6 +85,16 @@ public class User {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+
+	public String getSocialName() {
+		return socialName;
+	}
+
+
+	public void setSocialName(String socialName) {
+		this.socialName = socialName;
 	}
 
 

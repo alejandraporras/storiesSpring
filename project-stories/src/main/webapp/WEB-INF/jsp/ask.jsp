@@ -33,23 +33,30 @@
 			<table class="table table-bordered table-hover table-striped">
 
 	<tbody>
+	<c:set var="count" value="0" scope="page" />
 		<c:forEach items="${asks}" var="ask">
-			<tr>
+		<c:set var="count" value="${count + 1}" scope="page" />
+						<tr>
 
-				<td> <a href="/project-stories/comments.html?idStory=${ask.getId()} " > <c:out value="${ask.title}" /></a>
-					
-					<br />
-					<c:out value="${ask.score}"  />  points
-					by
-					<c:out value="${ask.by.username}" />
-					| comments 
-					<a href="/project-stories/comments.html?idStory=${ask.getId()} " > <c:out value="${ask.getDescendants()}" /></a>
-
-					<c:out value="${ask.time}" />
-
-				</td>
-			</tr>
-		</c:forEach>
+							<td colspan="4">
+							
+								<form action="like.html?idStory=${ask.getId()}" method="POST" id=like>
+								<c:out value="${count}" />. 
+									<input type="image" src="resources/images/like.png">
+									<a
+								href="/project-stories/comments.html?idStory=${ask.getId()} ">
+									<c:out value="${ask.title}" />
+							</a> 
+								</form> </td></tr>
+						<tr>
+							<td id="trdescription"><c:out value="${ask.score}" />
+								points by <c:out value="${ask.by.username}" /> <c:out
+									value="${ask.time}" /> | comments <a
+								href="/project-stories/comments.html?idStory=${ask.getId()} ">
+									<c:out value="${ask.getDescendants()}" />
+							</a></td>
+						</tr>
+					</c:forEach>
 	</tbody>
 </table>
 		</div>
