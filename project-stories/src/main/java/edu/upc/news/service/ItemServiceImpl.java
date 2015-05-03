@@ -56,13 +56,14 @@ public class ItemServiceImpl implements ItemService {
 	}
 
 	@Override
-	public void newStory(String title, String url, User user) {
-		Story story = new Story(user, url, title);
+	public void saveStory(String title, String url, User user) {
+		System.out.println("CREANDO HISTORIA: " + title + "  URL: " + url);
+		Story story = new Story(user, title, url);
 		storyRepository.save(story);
 	}
 
 	@Override
-	public void newAsk(String title, User user, String url, String text) {
+	public void saveAsk(String title, User user, String url, String text) {
 		Story story = new Story(user, title, "", text);
 		storyRepository.save(story);
 	}
@@ -74,6 +75,15 @@ public class ItemServiceImpl implements ItemService {
 		Item parent = itemRepository.findOne(parentItem.getId());
 		parent.incrementDescendants();
 		itemRepository.save(parent);
+	}
+
+	@Override
+	public String rateStory(Long idItem) {
+		Story story = (Story) itemRepository.findOne(idItem);
+		story.incrementLikes();
+		System.out.println("SCORE: " +story.getScore());
+		itemRepository.save(story);
+		return story.getType();
 	}
 
 

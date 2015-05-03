@@ -63,6 +63,10 @@ public class Story extends Item {
 	public void setUrl(String url) {
 		this.url = url;
 	}
+	
+	public void incrementLikes(){
+		score = score + 1;
+	}
 		
 
 }

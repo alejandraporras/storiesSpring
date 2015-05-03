@@ -11,6 +11,7 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OrderBy;
 
 
 @Entity
@@ -31,6 +32,7 @@ public class Item {  // Esta clase podria definirse como abstracta. Depende de t
 	private User by; 
 	
 	@OneToMany(fetch = FetchType.EAGER,mappedBy="parent")
+	@OrderBy("time DESC")
 	private List<Comment> comments ;
 	
 	private Date time;

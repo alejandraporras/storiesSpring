@@ -19,10 +19,12 @@ public interface ItemService {
 	
 	public Item findItem(Long id);
 	
-	public void newStory(String title, String url, User user);
+	public void saveStory(String title, String url, User user);
 	
-	public void newAsk(String title,  User user, String url, String text);
+	public void saveAsk(String title,  User user, String url, String text);
 	
 	public void newComment(User user, String text, Item parentItem );
+	
+	public String rateStory(Long idItem);
 
 }
